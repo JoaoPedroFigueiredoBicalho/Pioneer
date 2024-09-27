@@ -1,0 +1,36 @@
+{
+	"id": "Pioneer",
+	"name": "The Pioneer",
+	"description": "The first to step into a new path. <LINE> Imperviable to the harshness of the tundra and with eyes adapted to the nighttime, this survivor goes by claiming this world as their own.",
+	"features": {
+		"the_pioneer/HypothermiaResistance": 1.5,
+		"the_pioneer/SpearPlus": 0.0,
+		"the_pioneer/PioneerGlows": true,
+		"the_pioneer/TimeToEscape": 80,
+
+		"alignments": {
+			"Scavengers": {
+				"like": 0.1,
+				"strength": 0.2
+			}
+		},
+		"throw_skill": 2,
+		"the_glow": false,
+		"select_menu_scene": "Slugcat_Pioneer",
+		"weight": 1.2,
+		"tunnel_speed": 0.92,
+		"climb_speed": 0.86,
+		"diet": {
+			"base": "Gourmand"
+		},
+		"karma_cap": 6,
+		"karma": 2,
+		"food_min": 5,
+		"food_max": 10,
+		"world_state": [ "Pioneer", "Saint", "White" ],
+		"start_room": [ "GW_C01", "GW_S01" ],
+		"sleep_scene":  "PioneerSleep",
+		"select_menu_scene_ascended": "Ghost_Pioneer",
+		"the_mark": true
+	}
+}
