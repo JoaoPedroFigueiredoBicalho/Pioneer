@@ -1,4 +1,4 @@
-Use this template on GitHub or [download the code](https://github.com/SlimeCubed/ExampleSlugBaseMod/archive/refs/heads/master.zip), whichever is easiest.
+Custom Slugcat made using Slugbase's template and tutorials.
 
 Links:
 - [Template Walkthrough](https://slimecubed.github.io/slugbase/articles/template.html) for a guide to this template.
