@@ -1,7 +1,7 @@
 ﻿{
 	"id": "arwyn.pioneer",
 	"name": "The Pioneer",
-	"version": "0.2.4",
+	"version": "0.2.5",
 	"authors": "Arwyn",
 	"description": "A mod that adds The Pioneer to the game.",
 	"requirements": [ "slime-cubed.slugbase", "dressmyslugcat" ],

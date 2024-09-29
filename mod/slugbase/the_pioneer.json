@@ -3,7 +3,7 @@
 	"name": "The Pioneer",
 	"description": "The first to step into a new path. <LINE> Imperviable to the harshness of the tundra and with eyes adapted to the nighttime, this survivor goes by claiming this world as their own.",
 	"features": {
-		"the_pioneer/HypothermiaResistance": 1.5,
+		"the_pioneer/HypothermiaResistance": 2.5,
 		"the_pioneer/SpearPlus": 0.0,
 		"the_pioneer/PioneerGlows": true,
 		"the_pioneer/TimeToEscape": 80,
@@ -29,7 +29,8 @@
 		"food_max": 10,
 		"world_state": [ "Pioneer", "Saint", "White" ],
 		"start_room": [ "GW_C01", "GW_S01" ],
-		"sleep_scene":  "PioneerSleep",
+		"sleep_scene": "PioneerSleep",
+		"title_card": "intro-roll_c_pioneer",
 		"select_menu_scene_ascended": "Ghost_Pioneer",
 		"the_mark": true
 	}

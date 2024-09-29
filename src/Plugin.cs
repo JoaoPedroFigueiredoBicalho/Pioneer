@@ -17,43 +17,65 @@ using MoreSlugcats;
 using System.Runtime.CompilerServices;
 using RWCustom;
 using SlugBase.DataTypes;
+using System.Threading;
 
 [module: UnverifiableCode]
 #pragma warning disable CS0618 // Type or member is obsolete
 [assembly: SecurityPermission(SecurityAction.RequestMinimum, SkipVerification = true)]
 #pragma warning restore CS0618
 
-public static class CWTS
+public static class PioneerClass
 {
-    public static readonly ConditionalWeakTable<Player, Data> dataCWT = new();
-
-    public static bool TryGetCWT(Player self, out Data data)
+    public class Pioneer
     {
-        if (self != null)
+        // Define your variables to store here!
+        public bool SleptWell;
+        public bool IsPioneer;
+        public bool IsFirstBite;
+        public int EscapeTimer;
+        
+
+        public Pioneer()
         {
-            data = dataCWT.GetOrCreateValue(self);
+            // Initialize your variables here! (Anything not added here will be null or false or 0 (default values))
+            this.SleptWell = false;
+            this.IsPioneer = false;
+            this.IsFirstBite = false;
+            this.EscapeTimer = 0;
         }
-        else
-        {
-            data = null;
-        }
-        return data != null;
     }
 
-    public class Data
-    {
-        public bool isFirstBite = true;
-        public int timer = 0;
-        public bool isPioneer = false;
-    }
+    // This part lets you access the stored stuff by simply doing "self.GetCat()" in Plugin.cs or everywhere else!
+    private static readonly ConditionalWeakTable<Player, Pioneer> CWT = new();
+    public static Pioneer GetCat(this Player player) => CWT.GetValue(player, _ => new());
 }
 
-namespace SlugTemplate
+public static class NocturnalClass
+{
+    public class Nocturnal
+    {
+        // Define your variables to store here!
+        public bool IsNight;
+
+
+        public Nocturnal()
+        {
+            // Initialize your variables here! (Anything not added here will be null or false or 0 (default values))
+            this.IsNight = false;
+        }
+    }
+
+    // This part lets you access the stored stuff by simply doing "self.GetCat()" in Plugin.cs or everywhere else!
+    private static readonly ConditionalWeakTable<Room, Nocturnal> CWT = new();
+    public static Nocturnal GetRoom(this Room room) => CWT.GetValue(room, _ => new());
+}
+
+namespace Pioneer
 {
 
     [BepInDependency("slime-cubed.slugbase")]
     [BepInDependency("dressmyslugcat", BepInDependency.DependencyFlags.SoftDependency)]
-    [BepInPlugin(MOD_ID, "Pioneer", "0.2.4")]
+    [BepInPlugin(MOD_ID, "Pioneer", "0.2.5")]
 
     class Plugin : BaseUnityPlugin
     {
@@ -70,29 +92,40 @@ namespace SlugTemplate
 
             // Put your custom hooks here!
             On.Player.Update += PlayerUpdateHook;
-            On.Leech.Update += LeechUpdateHook;
             On.Player.UpdateAnimation += SwimSpeed;
             On.RainWorld.PostModsInit += RainWorld_PostModsInIt;
             On.Lizard.Bite += LizardBiteHook;
             On.PlayerGraphics.Update += PlayerGraphicsHook;
-            On.Player.DeathByBiteMultiplier += DeathByBiteMultiplierHook;
+            // On.Player.DeathByBiteMultiplier += DeathByBiteMultiplierHook;
             On.RoomCamera.Update += RoomCameraUpdateHook;
             On.Room.NowViewed += RoomViewedHook;
-            On.Room.Update += RoomUpdateHook;
+            On.RainWorld.PostModsInit += RainWorld_PostModsInIt;
+            //On.Menu.KarmaLadderScreen.SleepDeathScreenDataPackage += SleepAndDeathScreenDataPackageHook;
+            On.Player.ctor += Abracadabra;
+            On.Player.DeathByBiteMultiplier += DeathByBiteMultiplierHook;
+
+
         }
 
-        private void RoomUpdateHook(On.Room.orig_Update orig, Room self)
+        private void Abracadabra(On.Player.orig_ctor orig, Player self, AbstractCreature abstractCreature, World world)
         {
-            orig(self);
+            orig(self, abstractCreature, world);
+            if (self.slugcatStats.name.value == "Pioneer")
+            {
+                self.GetCat().IsPioneer = true;
+                self.GetCat().IsFirstBite = true;
+            }
         }
+
 
         private void RoomViewedHook(On.Room.orig_NowViewed orig, Room self)
         {
             orig(self);
+            //if ((self.world.game.Players[0].realizedCreature as Player).GetCat().IsPioneer && (self.world.game.Players[0].realizedCreature as Player).GetCat().SleptWell)
             {
                 new PlacedObject.DayNightData(null)
                 {
-                    nightPalette = 10
+                    nightPalette = 26
                 }.Apply(self);
                 if (self.game.cameras[0].currentPalette.darkness < 0.8f)
                 {
@@ -101,70 +134,74 @@ namespace SlugTemplate
                 }
                 self.roomSettings.Clouds = 0.875f;
                 self.world.rainCycle.sunDownStartTime = 0;
-                self.world.rainCycle.dayNightCounter = 3750;
+                self.world.rainCycle.dayNightCounter = 30000;
             }
         }
 
         private void RoomCameraUpdateHook(On.RoomCamera.orig_Update orig, RoomCamera self)
         {
             orig(self);
-            self.currentPalette.darkness = 0.7f;
-            self.effect_darkness = 0.7f;
-            self.effect_desaturation = 0.3f;
+            Creature creature = (self.followAbstractCreature != null) ? self.followAbstractCreature.realizedCreature : null;
+            //if (creature != null && creature is Player && (creature as Player).GetCat().IsPioneer && self.game.IsStorySession && (creature as Player).GetCat().SleptWell)
+            {
+                self.currentPalette.darkness = 0.3f;
+                self.effect_darkness = 0.3f;
 
-            float num = 1f;
-            float num3 = 1.92f;
-            if ((float)self.room.world.rainCycle.dayNightCounter < num)
-            {
-                if (self.room.roomSettings.GetEffectAmount(RoomSettings.RoomEffect.Type.AboveCloudsView) > 0f && self.room.roomSettings.GetEffectAmount(RoomSettings.RoomEffect.Type.SkyAndLightBloom) > 0f)
+                float num = 1320f;
+                float num3 = 1.92f;
+                if ((float)self.room.world.rainCycle.dayNightCounter < num)
                 {
-                    self.room.roomSettings.GetEffect(RoomSettings.RoomEffect.Type.SkyAndLightBloom).amount = 0f;
+                    if (self.room.roomSettings.GetEffectAmount(RoomSettings.RoomEffect.Type.AboveCloudsView) > 0f && self.room.roomSettings.GetEffectAmount(RoomSettings.RoomEffect.Type.SkyAndLightBloom) > 0f)
+                    {
+                        self.room.roomSettings.GetEffect(RoomSettings.RoomEffect.Type.SkyAndLightBloom).amount = 0f;
+                    }
+                    self.paletteBlend = 1f;
+                    self.ApplyFade();
                 }
-                self.paletteBlend = 1;
-                self.ApplyFade();
-            }
-            /*else if ((float)self.room.world.rainCycle.dayNightCounter == num)
-            {
-                self.ChangeBothPalettes(self.paletteB, self.room.world.rainCycle.duskPalette, 0f);
-            }
-            else if ((float)self.room.world.rainCycle.dayNightCounter < num * num2)
-            {
-                if (self.paletteBlend == 1f || self.paletteB != self.room.world.rainCycle.duskPalette || self.dayNightNeedsRefresh)
+                /*else if ((float)self.room.world.rainCycle.dayNightCounter == num)
                 {
                     self.ChangeBothPalettes(self.paletteB, self.room.world.rainCycle.duskPalette, 0f);
                 }
-                self.paletteBlend = Mathf.InverseLerp(num, num * num2, (float)self.room.world.rainCycle.dayNightCounter);
-                self.ApplyFade();
-            }
-            else if ((float)self.room.world.rainCycle.dayNightCounter == num * num2)
-            {
-                self.ChangeBothPalettes(self.room.world.rainCycle.duskPalette, self.room.world.rainCycle.nightPalette, 0f);
-            }
-            else if ((float)self.room.world.rainCycle.dayNightCounter < num * num3)
-            {
-                if (self.paletteBlend == 1f || self.paletteB != self.room.world.rainCycle.nightPalette || self.paletteA != self.room.world.rainCycle.duskPalette || self.dayNightNeedsRefresh)
+                else if ((float)self.room.world.rainCycle.dayNightCounter < num * num2)
+                {
+                    if (self.paletteBlend == 1f || self.paletteB != self.room.world.rainCycle.duskPalette || self.dayNightNeedsRefresh)
+                    {
+                        self.ChangeBothPalettes(self.paletteB, self.room.world.rainCycle.duskPalette, 0f);
+                    }
+                    self.paletteBlend = Mathf.InverseLerp(num, num * num2, (float)self.room.world.rainCycle.dayNightCounter);
+                    self.ApplyFade();
+                }
+                else if ((float)self.room.world.rainCycle.dayNightCounter == num * num2)
                 {
                     self.ChangeBothPalettes(self.room.world.rainCycle.duskPalette, self.room.world.rainCycle.nightPalette, 0f);
                 }
-                self.paletteBlend = Mathf.InverseLerp(num * num2, num * num3, (float)self.room.world.rainCycle.dayNightCounter) * (self.effect_dayNight * 0.99f);
-                self.ApplyFade();
-            }
-            else if ((float)self.room.world.rainCycle.dayNightCounter == num * num3)
-            {
-                self.ChangeBothPalettes(self.room.world.rainCycle.duskPalette, self.room.world.rainCycle.nightPalette, self.effect_dayNight * 0.99f);
-            }*/
-            else if ((float)self.room.world.rainCycle.dayNightCounter > num * num3)
-            {
-                if (self.paletteBlend == 1f || self.paletteB != self.room.world.rainCycle.nightPalette || self.paletteA != self.room.world.rainCycle.duskPalette || self.dayNightNeedsRefresh)
+                else if ((float)self.room.world.rainCycle.dayNightCounter < num * num3)
                 {
-                    self.ChangeBothPalettes(self.room.world.rainCycle.duskPalette, self.room.world.rainCycle.nightPalette, self.effect_dayNight);
+                    if (self.paletteBlend == 1f || self.paletteB != self.room.world.rainCycle.nightPalette || self.paletteA != self.room.world.rainCycle.duskPalette || self.dayNightNeedsRefresh)
+                    {
+                        self.ChangeBothPalettes(self.room.world.rainCycle.duskPalette, self.room.world.rainCycle.nightPalette, 0f);
+                    }
+                    self.paletteBlend = Mathf.InverseLerp(num * num2, num * num3, (float)self.room.world.rainCycle.dayNightCounter) * (self.effect_dayNight * 0.99f);
+                    self.ApplyFade();
                 }
-                self.paletteBlend = self.effect_dayNight * 0.99f;
-                self.ApplyFade();
+                else if ((float)self.room.world.rainCycle.dayNightCounter == num * num3)
+                {
+                    self.ChangeBothPalettes(self.room.world.rainCycle.duskPalette, self.room.world.rainCycle.nightPalette, self.effect_dayNight * 0.99f);
+                }*/
+                else if ((float)self.room.world.rainCycle.dayNightCounter > num * num3)
+                {
+                    if (self.paletteBlend == 1f || self.paletteB != self.room.world.rainCycle.nightPalette || self.paletteA != self.room.world.rainCycle.duskPalette || self.dayNightNeedsRefresh)
+                    {
+                        self.ChangeBothPalettes(self.room.world.rainCycle.duskPalette, self.room.world.rainCycle.nightPalette, self.effect_dayNight);
+                    }
+                    self.paletteBlend = self.effect_dayNight * 0.99f;
+                    self.ApplyFade();
+                }
+
+                self.dayNightNeedsRefresh = false;
             }
-        
-		  self.dayNightNeedsRefresh = false;
         }
+
 
 
 
@@ -172,25 +209,22 @@ namespace SlugTemplate
         private void LizardBiteHook(On.Lizard.orig_Bite orig, Lizard self, BodyChunk chunk)
         {
             orig(self, chunk);
-            //TimeToEscape.TryGet((chunk.owner as Player), out float escapeTimer);
-            if ((chunk.owner as Player).SlugCatClass.value == "Pioneer" && CWTS.TryGetCWT((chunk.owner as Player), out var data) && data.isFirstBite)
+            if ((chunk.owner as Player).GetCat().IsPioneer == true && (chunk.owner as Player).GetCat().IsFirstBite == true)
             {
-
-                self.lizardParams.biteDamageChance = 0;
-
-                (chunk.owner as Player).LoseAllGrasps();
+                if (TimeToEscape.TryGet((chunk.owner as Player), out var escapeTime) && (chunk.owner as Player).GetCat().EscapeTimer > escapeTime && (chunk.owner as Player).GetCat().IsFirstBite == true && (chunk.owner as Player).GetCat().IsPioneer)
+                    (chunk.owner as Player).GetCat().IsFirstBite = false;
+                
             }
         }
         
 
         private float DeathByBiteMultiplierHook(On.Player.orig_DeathByBiteMultiplier orig, Player self)
         {
-            orig(self);
-            if(self.SlugCatClass.value == "Pioneer" && CWTS.TryGetCWT(self, out var data) && data.isFirstBite)
+            if(self.GetCat().IsPioneer)
             {
                 return 0f;
             }
-            return orig(self);
+            else return orig(self);
         }
 
         private void PlayerGraphicsHook(On.PlayerGraphics.orig_Update orig, PlayerGraphics self)
@@ -206,7 +240,7 @@ namespace SlugTemplate
                     self.lightSource = null;
                 }
             }
-            else if (self.player.room.Darkness(self.player.mainBodyChunk.pos) > 0f && !self.player.DreamState && self.player.SlugCatClass.value == "Pioneer")
+            else if (!self.player.DreamState && self.player.SlugCatClass.value == "Pioneer")
             {
                 self.lightSource = new LightSource(self.player.mainBodyChunk.pos, false, Color.Lerp(new Color(1f, 1f, 1f), (ModManager.MSC && self.player.SlugCatClass == MoreSlugcatsEnums.SlugcatStatsName.Slugpup) ? self.player.ShortCutColor() : Color.cyan, 0.5f), self.player);
                 self.lightSource.requireUpKeep = true;
@@ -214,7 +248,7 @@ namespace SlugTemplate
                 self.lightSource.setAlpha = new float?(1f);
                 self.player.room.AddObject(self.lightSource);
             }
-            if (ModManager.MMF)
+            /*if (ModManager.MMF && self.player.GetCat().IsPioneer)
             {
                 Color? color = Color.cyan;
                 if (self.lanternLight != null)
@@ -229,7 +263,7 @@ namespace SlugTemplate
                 }
                 else if (color != null)
                 {
-                    self.lanternLight = new LightSource(self.player.bodyChunks[1].pos, true, Color.cyan, self.player);
+                    self.lanternLight = new LightSource(self.player.bodyChunks[1].pos, true, self.player.ShortCutColor(), self.player);
                     self.lanternLight.submersible = true;
                     self.lanternLight.requireUpKeep = true;
                     self.lanternLight.setRad = new float?(60f);
@@ -237,7 +271,7 @@ namespace SlugTemplate
                     self.lanternLight.flat = true;
                     self.player.room.AddObject(self.lanternLight);
                 }
-            }
+            }*/
         }
 
 
@@ -314,9 +348,8 @@ namespace SlugTemplate
         private void PlayerUpdateHook(On.Player.orig_Update orig, Player self, bool eu)
         {
             orig(self, eu);
-
             // Pioneer is more resistant to hypothermia when dry, and more vulnerable to hypothermia when wet
-            if (self.SlugCatClass.value == "Pioneer" && HypothermiaResistance.TryGet(self, out var resistance))
+            if (self.GetCat().IsPioneer && HypothermiaResistance.TryGet(self, out var resistance))
             {
                 if (self.Submersion >= 0.1f)
                 {
@@ -331,25 +364,26 @@ namespace SlugTemplate
             }
 
             // Pioneer escapes the first grab of the cycle (ty struggle devs)
-            if (CWTS.TryGetCWT(self, out var data) && (self.dead || self.Sleeping) && self.SlugCatClass.value == "Pioneer")
-            {
-                data.isFirstBite = true;
-            }
             if (self.grabbedBy.Count > 0 &&
                 (self.grabbedBy[0].grabber is Creature && self.grabbedBy[0].grabber is not Player)
-                && !self.dead && self.SlugCatClass.value == "Pioneer")
+                && !self.dead && self.GetCat().IsPioneer)
             {
-                if (CWTS.TryGetCWT(self, out data) && TimeToEscape.TryGet(self, out var escapeTimer))
+                if (self.GetCat().IsPioneer)
                 {
-                    data.timer++;
-                    
-                    if (data.timer > escapeTimer && data.isFirstBite == true)
+                    self.GetCat().EscapeTimer++;
+                    if (self.grabbedBy[0].grabber is Leech)
                     {
                         self.grabbedBy[0].grabber.Violence(null, new Vector2?(Custom.DirVec(self.firstChunk.pos, self.grabbedBy[0].grabber.bodyChunks[0].pos) * 10f * 1f),
                             self.grabbedBy[0].grabber.bodyChunks[0], null, Creature.DamageType.Blunt, 0.2f, 130f * Mathf.Lerp(self.grabbedBy[0].grabber.Template.baseStunResistance, 1f, 0.5f));
                         self.grabbedBy[0].Release();
-                        data.timer = 0;
-                        data.isFirstBite = false;
+                    }
+                    if (TimeToEscape.TryGet(self, out var escapeTime) && self.GetCat().EscapeTimer == escapeTime && self.GetCat().IsFirstBite == true && self.GetCat().IsPioneer)
+                    {
+                        self.grabbedBy[0].grabber.Violence(null, new Vector2?(Custom.DirVec(self.firstChunk.pos, self.grabbedBy[0].grabber.bodyChunks[0].pos) * 10f * 1f),
+                            self.grabbedBy[0].grabber.bodyChunks[0], null, Creature.DamageType.Blunt, 0.2f, 130f * Mathf.Lerp(self.grabbedBy[0].grabber.Template.baseStunResistance, 1f, 0.5f));
+                        self.grabbedBy[0].Release();
+                        self.GetCat().EscapeTimer = 0;
+                        self.GetCat().IsFirstBite = false;
                     }
                 }
             }
@@ -358,20 +392,12 @@ namespace SlugTemplate
         private void SwimSpeed(On.Player.orig_UpdateAnimation orig, Player self)
         {
             orig(self);
-                if (self.SlugCatClass.value == "Pioneer" && self.animation == Player.AnimationIndex.DeepSwim)
+                if (self.GetCat().IsPioneer && self.animation == Player.AnimationIndex.DeepSwim)
                 {
                 self.waterFriction = 0.90f;
                 }
         }
 
-        private void LeechUpdateHook(On.Leech.orig_Update orig, Leech self, bool eu)
-        {
-            orig(self, eu);
-            if (self.huntPrey is Player && (self.huntPrey as Player).SlugCatClass.value == "Pioneer")
-            {
-                    self.huntPrey = null;
-            }
-        }
 
         // Load any resources, such as sprites or sounds
         private void LoadResources(RainWorld rainWorld)
@@ -381,7 +407,7 @@ namespace SlugTemplate
         private void Player_ThrownSpear(On.Player.orig_ThrownSpear orig, Player self, Spear spear)
         {
             orig(self, spear);
-            if (SpearPlus.TryGet(self, out var power) && self.SlugCatClass.value == "Pioneer")
+            if (SpearPlus.TryGet(self, out var power) && self.GetCat().IsPioneer)
             {
                 spear.spearDamageBonus *= 1f + power;
             }
