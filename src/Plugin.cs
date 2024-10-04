@@ -20,6 +20,8 @@ using SlugBase.DataTypes;
 using System.Threading;
 using SlugBase.SaveData;
 using System.Timers;
+using static System.Net.Mime.MediaTypeNames;
+using System.IO;
 
 
 [module: UnverifiableCode]
@@ -29,6 +31,8 @@ using System.Timers;
 public class SaveMiscWorld
 {
     public bool IsNight { get; set; }
+    public bool NightTutorial = false;
+    public bool FoodTutorial = false;
     public List<string> MySaveStrings { get; } = new();
 
 
@@ -272,10 +276,12 @@ namespace Pioneer
         private void Abracadabra(On.Player.orig_ctor orig, Player self, AbstractCreature abstractCreature, World world)
         {
             orig(self, abstractCreature, world);
+            var save = self.room.game.GetMiscWorld();
             if (self.slugcatStats.name.value == "Pioneer")
             {
                 self.GetCat().IsPioneer = true;
                 self.GetCat().IsFirstBite = true;
+
             }
         }
 
@@ -374,7 +380,14 @@ namespace Pioneer
                 self.room.roomSettings.GetEffect(RoomSettings.RoomEffect.Type.LightBurn).amount = 1f;
                 self.effect_brightness = 0.3f;
             }
+            if (save.IsNight == false && save.NightTutorial == false && self != null && self.hud != null && self.game.rainWorld != null)
+            {
+                self?.hud?.textPrompt?.AddMessage(self?.game?.rainWorld?.inGameTranslator?.Translate("The Pioneer's eyes are bothered by sunlight."), 0, 300, true, false);
+                save.NightTutorial = true;
+            }
         }
+    
+    
 
         private void LizardBiteHook(On.Lizard.orig_Bite orig, Lizard self, BodyChunk chunk)
         {
@@ -556,6 +569,12 @@ namespace Pioneer
                         self.GetCat().IsFirstBite = false;
                     }
                 }
+            }
+            if (self.GetCat().IsPioneer && self.FoodInStomach == 5 && save.FoodTutorial == false)
+            {
+                self?.room?.game?.cameras[0]?.hud?.textPrompt?.AddMessage(self?.room?.game?.rainWorld?.inGameTranslator?.Translate("If your belly is full, you will sleep until the next night."), 0, 200, true, true);
+                self?.room?.game?.cameras[0]?.hud?.textPrompt?.AddMessage(self?.room?.game?.rainWorld?.inGameTranslator?.Translate("However, you will wake up on an empty stomach."), 0, 200, true, true);
+                save.FoodTutorial = true;
             }
         }
 
