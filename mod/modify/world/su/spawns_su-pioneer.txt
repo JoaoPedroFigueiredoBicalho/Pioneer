@@ -1,0 +1,19 @@
+OFFSCREEN : 0-Vulture-4, 0-Scavenger-14
+SU_A02 : 3-Strawberry
+SU_A04 : 4-Strawberry
+SU_A06 : 3-Caramel
+SU_A07 : 4-Caramel
+SU_A10 : 3-Caramel
+SU_A17 : 2-Cyan-2
+SU_A20 : 5-Centipede-3, 6-Small Centipede-2
+SU_A31 : 3-Small Centipede-3
+SU_A32 : 2-Red
+SU_A40 : 2-Strawberry
+SU_B02 : 6-Yellow-4, 7-Yellow-2
+SU_B04 : 4-Yellow-2, 5-Yellow-3, 5-Salamander-{PreCycle}-2
+SU_B05 : 4-Caramel
+SU_B07 : 3-Yellow-3, 3-TentaclePlant-{PreCycle}
+SU_B08 : 3-Caramel
+SU_B09 : 4-Centipede-5
+SU_B11 : 8-Centiwing-4, 8-TentaclePlant-{PreCycle}
+SU_C02 : 2-Centiwing-2, 5-Caramel

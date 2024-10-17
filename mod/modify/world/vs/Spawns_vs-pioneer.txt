@@ -1,0 +1,26 @@
+OFFSCREEN : 0-Scavenger-14, 0-Vulture-4
+VS_D04 : 6-Black-2, 8-Black-2
+VS_B16 : 7-Black-2
+VS_C10 : 7-Black-2
+VS_E02 : 8-Black, 10-Black, 13-Black, 7-LanternMouse-2, 6-Big Spider-2-{Ignorecycle}, 4-SpitterSpider-{Ignorecycle}
+VS_F02 : 7-Black-3
+VS_B06 : 3-LanternMouse-3
+VS_B09 : 3-Yellow-2
+VS_C07 : 7-Yellow-3
+VS_C04 : 2-Centiwing-2, 4-Centiwing, 4-Big Spider-3-{Winter}, 4-Strawberry
+VS_C05 : 3-Centipede-4, 4-Red Centipede
+VS_A08 : 2-Centipede-2, 3-Small Centipede-4
+VS_F01 : 9-LanternMouse-5
+VS_B12 : 6-Small Centipede-5
+VS_H01 : 8-Tentacle Plant, 2-Drop Bug-{Ignorecycle}
+VS_E06 : 4-Centipede-4, 4-Small Centipede-3, 3-Drop Bug-{Ignorecycle}
+VS_C02 : 3-Cyan-2
+VS_C03 : 4-Strawberry
+VS_A04 : 4-Strawberry
+VS_C09 : 5-Centipede-3, 2-SpitterSpider-2
+VS_C08 : 7-Aquacenti, 3-Sea Leech-6, 4-Sea Leech-4
+VS_E01 : 7-Aquacenti, 7-Sea Leech-5
+VS_D02 : 5-Aquacenti, 6-Sea Leech-6
+VS_D03 : 4-Sea Leech-6
+VS_C01 : 10-Sea Leech-4, 12-Sea Leech-5, 13-Sea Leech-3
+VS_C13 : 3-Centiwing-3

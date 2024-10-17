@@ -1,0 +1,21 @@
+OFFSCREEN : 0-Vulture-4, 0-Scavenger-3
+SI_A27 : 4-Yellow-2
+SI_A30 : 3-Yellow-2, 3-TentaclePlant-{PreCycle}
+SI_B02x : 3-Yellow-4
+SI_B12 : 2-Centiwing, 1-Small Centipede-{AlternateForm}-3, 1-TentaclePlant-{PreCycle}
+SI_B16 : 7-White, 8-Cyan-{PreCycle}
+SI_C01 : 3-Yellow, 4-Yellow-2, 2-Snail-{PreCycle}-3, 5-Snail-{PreCycle}-2
+SI_C07 : 2-Yellow-2, 3-Snail-{PreCycle}-4
+SI_C08 : 4-Centiwing
+SI_C09 : 2-Centiwing-2, 2-Snail-{PreCycle}-2, 3-Snail-{PreCycle}
+SI_D01 : 5-Centiwing, 6-Centiwing
+SI_D05 : 3-Yellow-2, 6-Centiwing, 6-Small Centipede-{AlternateForm}-3
+SI_D06 : 5-Yellow, 6-Yellow, 7-Yellow-2
+SI_F01 : 11-Centiwing-2, 3-Snail-{PreCycle}-4, 7-Snail-{PreCycle}-2, 11-Snail-{PreCycle}-2
+LINEAGE : SI_B09 : 5 : Centiwing-0.05, Centiwing-0.05, Centipede-{0.8}-0.2, RedCentipede-0
+SI_B01 : 4-Snail-{PreCycle}-2, 5-Snail-{PreCycle}-3
+SI_A03x : 3-Yellow-3
+SI_C06 : 2-CicadaB, 3-CicadaA
+LINEAGE : SI_C02 : 5 : NONE-0.05, Mimic-{20}-0.5, Mimic-{14}-0.5, TentaclePlant-0
+SI_B04 : 2-White
+SI_C01x : 3-Snail-{PreCycle}-2

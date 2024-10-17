@@ -1,0 +1,22 @@
+LF_A03 : 3-Small Centipede-2
+LF_A05 : 3-Small Centipede-2
+LF_B04 : 4-Small Centipede, 5-Small Centipede-2
+LINEAGE : LF_A03 : 3 : Small Centipede-0.5, Centipede-{0.4}-0.5, Centipede-{0.6}-0.5, Centipede-{0.8}-0.5, NONE-0
+LINEAGE : LF_A05 : 4 : Small Centipede-0.5, Centipede-{0.3}-0.5, Centipede-{0.5}-0.5, Centipede-{0.7}-0.5, NONE-0
+LF_A13 : 3-BigSpider-{Winter}, 4-BigSpider-{Winter}
+LF_B03 : 3-Centipede-4
+LF_C01 : 2-Caramel, 3-TentaclePlant-{PreCycle}
+LF_C02 : 6-Caramel, 4-Yeek-{Winter}-5, 5-Centiwing, 5-CicadaB-{PreCycle}-3, 6-CicadaA-{PreCycle}-3
+LF_C03 : 3-Yeek-{Winter}-2, 4-Yeek-{Winter}-3
+LF_D01 : 5-Caramel, 3-Centiwing, 6-Salamander-{PreCycle}
+LF_D02 : 3-Centiwing
+LF_D03 : 2-Centiwing, 5-Centiwing, 6-Caramel, 6-Salamander-{PreCycle}
+LF_D04 : 3-Centiwing-2
+LF_D08 : 8-SpitterSpider-{Winter}-2, 9-BigSpider-{Winter}-4
+LF_E01 : 5-Caramel, 2-Salamander-{PreCycle}, 3-TentaclePlant-{PreCycle}
+LF_E02 : 2-Caramel, 3-Yeek-{Winter}-6, 5-Caramel
+LF_E04 : 5-Caramel
+LF_F02 : 3-Centiwing-2, 3-CicadaB-2, 3-CicadaA-{PreCycle}-4
+LINEAGE : LF_E01 : 4 : White-0.3, White-0.3, Red-0
+LINEAGE : LF_E03 : 2 : White-0.5, White-0.2, Red-0
+OFFSCREEN : 0-Deer-4, 0-Vulture-4, 0-Scavenger-12

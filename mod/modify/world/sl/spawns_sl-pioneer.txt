@@ -1,0 +1,27 @@
+SL_C11 : 2-Sea Leech-4, 3-Sea Leech-3, 4-Tentacle Plant, 5-Tentacle Plant
+SL_A03 : 2-Snail-2, 3-Snail-3
+SL_C06 : 3-Jet Fish, 4-Jet Fish
+SL_D05 : 7-Snail, 8-Snail, 4-Jetfish
+SL_B02 : 8-Sea Leech-5, 5-Sea Leech-5, 9-Tentacle Plant, 6-Eel-{PreCycle}
+LINEAGE : SL_B04 : 3 : NONE-0.05, White-0.2, Red-0
+SL_WALL02 : 6-Jet Fish
+OFFSCREEN : 0-Vulture-5, 0-Leviathan-2
+SL_A02 : 4-Sea Leech-4
+SL_B01 : 3-Sea Leech-11, 3-Eel-{PreCycle}
+SL_B02SAINT : 7-Sea Leech-8
+SL_B10 : 2-BigSpider-{Winter}
+SL_C02 : 10-Sea Leech-6, 12-Sea Leech-9, 7-Yellow-4, 5-Eel-{PreCycle}
+SL_C04 : 5-Aquacenti
+SL_C05 : 4-Sea Leech-6, 4-Salamander-{PreCycle}
+SL_C14 : 3-Sea Leech-9
+SL_C15 : 6-Aquacenti
+SL_D01 : 4-Sea Leech-5, 5-Sea Leech-3, 7-Sea Leech-6
+SL_D03 : 6-Aquacenti
+SL_D04 : 5-Sea Leech-5, 6-Sea Leech-11, 7-Aquacenti-{PreCycle}
+SL_D06 : 5-Yellow-3, 9-Sea Leech-11, 9-Aquacenti-{PreCycle}
+SL_E01 : 4-Sea Leech-6, 5-Sea Leech-4, 5-Aquacenti-{PreCycle}
+SL_E02 : 6-Sea Leech-2, 7-Sea Leech-4, 8-Sea Leech-3
+SL_F01 : 5-Sea Leech-4
+SL_F02 : 10-Sea Leech-7, 9-Sea Leech-5, 8-Aquacenti-{PreCycle}
+SL_H02 : 7-Sea Leech-4, 8-Sea Leech-5, 10-Sea Leech-5, 10-Aquacenti-{PreCycle}
+SL_I02 : 3-Lantern Mouse-5

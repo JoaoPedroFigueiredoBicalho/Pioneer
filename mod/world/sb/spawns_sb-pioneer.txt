@@ -1,0 +1,35 @@
+SB_A04 : 3-TentaclePlant
+SB_G03 : 3-TentaclePlant, 4-Centipede, 5-Centipede, 6-Centipede
+SB_J01 : 4-Centipede, 6-Centipede
+LINEAGE : SB_A01 : 3 : Small Centipede-0.6, Centipede-{0.4}-0.3, Centipede-{0.8}-0.7, Red Centipede-0
+LINEAGE : SB_B01 : 3 : BigSpider-0.5, SpitterSpider-0.3, Red-0
+LINEAGE : SB_B01 : 4 : Caramel-0.5, Black-0.3, Red-0
+SB_E04 : 5-Centipede
+SB_A01 : 3-Small Centipede-4, 4-Centipede-2
+LINEAGE : SB_A03 : 6 : BigSpider-0.3, White-0.5, Red-0
+LINEAGE : SB_B02 : 4 : BigSpider-0.5, Black-0.2, Red-0
+OFFSCREEN : 0-Miros-{Ignorecycle}-6, 0-Scavenger-17, 0-Leviathan
+SB_A03 : 5-Caramel, 4-BigSpider-2
+SB_B02 : 3-TentaclePlant, 5-Yeek-{Winter}-3, 3-Salamander-{PreCycle}, 2-Eel-{PreCycle}
+SB_C01 : 2-TentaclePlant, 7-Black, 9-Yeek-{Winter}-5, 9-Black
+SB_C02 : 4-Jetfish, 2-Eel-{PreCycle}-2
+SB_C06 : 4-Black-{Ignorecycle}
+SB_C07 : 2-Lantern Mouse-6
+SB_C10 : 5-BigSpider-2, 8-Black-{Ignorecycle}
+SB_C11 : 2-Yellow-2
+SB_D04 : 7-SpitterSpider, 9-TentaclePlant
+SB_E02 : 6-TentaclePlant, 7-TentaclePlant, 5-Lantern Mouse-5, 10-Centipede, 8-Centipede
+SB_E07 : 8-Black-{Ignorecycle}-2
+SB_F01 : 3-Drop Bug-{Ignorecycle}, 4-Black-{Ignorecycle}, 5-Black-{Ignorecycle}
+SB_F02 : 5-Black-{Ignorecycle}, 6-Black-{Ignorecycle}, 8-Black-{Ignorecycle}
+SB_G02 : 4-Lantern Mouse-5, 10-TentaclePlant, 5-Centipede-2, 6-TentaclePlant, 5-Salamander-{PreCycle}
+SB_G04 : 6-SpitterSpider-2, 9-Drop Bug-{Ignorecycle}
+SB_GOR01 : 3-Small Centipede-4, 3-Yeek-{Winter}-3, 6-Yeek-{Winter}-2
+SB_H02 : 4-Centipede-3, 5-BigSpider-5, 6-SpitterSpider-2, 7-Centipede-4, 5-Red Centipede
+SB_H03 : 10-Small Centipede-2, 7-Small Centipede, 7-Yellow-3, 9-Small Centipede-3
+SB_I01 : 9-Black-{Ignorecycle}, 10-Black-{Ignorecycle}, 11-Black-{Ignorecycle}, 12-Black-{Ignorecycle}
+SB_J02 : 5-Jetfish-3, 5-Eel-{PreCycle}-2
+SB_J03 : 8-Black-{Ignorecycle}, 5-Black-{Ignorecycle}, 4-SpitterSpider, 5-Small Centipede-3, 6-TentaclePlant, 5-Salamander-{PreCycle}
+SB_J10 : 3-TentaclePlant, 4-Centipede-2
+SB_TESTB : 3-Small Centipede-4
+SB_TESTC : 2-TentaclePlant, 5-Caramel, 4-Small Centipede-3, 5-Salamander-{PreCycle}

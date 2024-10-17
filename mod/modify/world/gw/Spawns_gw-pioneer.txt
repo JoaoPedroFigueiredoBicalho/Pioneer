@@ -1,0 +1,24 @@
+GW_A08 : 3-Sea Leech-4
+GW_A10 : 3-Sea Leech-7
+GW_A11 : 3-Centiwing-1
+GW_A12 : 2-DropBug-{Ignorecycle}
+GW_A25 : 3-Lantern Mouse-3
+GW_B03 : 4-Sea Leech-3
+GW_B04 : 4-Sea Leech-8
+GW_B08 : 12-Sea Leech-{Ignorecycle}-6, 10-Sea Leech-{Ignorecycle}-3, 8-Sea Leech-{Ignorecycle}-3, 2-Big Spider-{Winter}-2
+GW_B09 : 3-Jungle Leech-{Ignorecycle}-9, 2-Drop Bug-{Ignorecycle}, 4-Garbage Worm-{Ignorecycle}-2
+GW_C02 : 2-Strawberry, 2-Centiwing, 5-Scavenger-{PreCycle,Seed:2837}, 5-TentaclePlant-{PreCycle}
+GW_C03 : 4-Caramel, 3-Centiwing-2
+GW_C04 : 4-Caramel, 4-Salamander-{PreCycle}-2
+GW_C06 : 3-Centipede, 4-Centipede-2, 4-Salamander-{PreCycle}
+GW_C09 : 4-Sea Leech-9
+GW_C10 : 4-Garbage Worm-3, 2-Jungle Leech-3, 3-Jungle Leech-3
+GW_D01 : 3-Centiwing-1, 6-Yellow-3, 5-TentaclePlant-{PreCycle}, 9-Salamander-{PreCycle}
+GW_D02 : 4-Big Spider-{Winter}-3, 6-Jungle Leech-{Ignorecycle}-5, 3-Drop Bug-{Ignorecycle}
+GW_E01 : 2-Centipede, 3-Centipede, 4-Red Centipede, 6-SpitterSpider-{Winter}
+GW_E02 : 6-Centiwing, 5-Yellow-4, 8-Caramel
+GW_EDGE03 : 7-Lantern Mouse-5, 13-Big Spider-{Winter}-3, 17-Salamander-{PreCycle}, 18-Salamander-{PreCycle}
+GW_EDGE05 : 2-DropBug-{Ignorecycle}-2
+LINEAGE : GW_B02 : 4 : Big Spider-0.5, White-0
+LINEAGE : GW_C03 : 5 : Caramel-0.2, Green-0.5, Red-0
+OFFSCREEN : 0-Scavenger-12, 0-Vulture-4

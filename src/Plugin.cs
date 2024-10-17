@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using BepInEx;
 using UnityEngine;
 using SlugBase.Features;
@@ -22,6 +23,8 @@ using SlugBase.SaveData;
 using System.Timers;
 using static System.Net.Mime.MediaTypeNames;
 using System.IO;
+using Mono.Cecil.Cil;
+using MonoMod.Cil;
 
 
 [module: UnverifiableCode]
@@ -30,7 +33,7 @@ using System.IO;
 #pragma warning restore CS0618
 public class SaveMiscWorld
 {
-    public bool IsNight { get; set; }
+    public bool IsNight = true;
     public bool NightTutorial = false;
     public bool FoodTutorial = false;
     public List<string> MySaveStrings { get; } = new();
@@ -92,6 +95,8 @@ namespace Pioneer
 
         private const string MOD_ID = "arwyn.pioneer";
 
+        public static readonly SlugcatStats.Name Pioneer = new SlugcatStats.Name("Pioneer", false);
+
         public static readonly PlayerFeature<float> HypothermiaResistance = PlayerFloat("the_pioneer/HypothermiaResistance");
         public static readonly PlayerFeature<int> SpearPlus = PlayerInt("the_pioneer/SpearPlus");
         public static readonly PlayerFeature<bool> PioneerGlows = PlayerBool("the_pioneer/PioneerGlows");
@@ -119,10 +124,35 @@ namespace Pioneer
             On.Player.Grabability += GrababilityHook;
             On.Player.CanIPickThisUp += CanIPickThisUpHook;
             On.MoreSlugcats.CLOracleBehavior.InitateConversation += InitiateConversationHook;
+            IL.SLOracleBehaviorHasMark.NameForPlayer += FluffyFriend;
+            On.Room.ctor += SilentGravityHook;
 
 
         }
 
+        private void SilentGravityHook(On.Room.orig_ctor orig, Room self, RainWorldGame game, World world, AbstractRoom abstractRoom)
+        {
+            orig(self, game, world, abstractRoom);
+            if (self.game.GetStorySession.characterStats.name.value == "pioneer" && self.world.region.name == "CL")
+            {
+                self.roomSettings.effects.Add(new RoomSettings.RoomEffect(RoomSettings.RoomEffect.Type.BrokenZeroG, 0.65f, false));
+                self.roomSettings.GetEffect(RoomSettings.RoomEffect.Type.BrokenZeroG).amount = 0.65f;
+            }
+        }
+
+        private void FluffyFriend(ILContext il)
+        {
+            ILCursor cursor = new ILCursor(il);
+            cursor.GotoNext(
+    x => x.MatchStloc(2),
+    x => x.MatchLdarg(0),
+    x => x.MatchLdstr("little"),
+    x => x.MatchCallOrCallvirt(typeof(OracleBehavior).GetMethod("Translate"))
+    );
+            cursor.MoveAfterLabels();
+            cursor.Index += 2;
+            cursor.Emit(OpCodes.Ldstr, "fluffy");
+        }
 
         private void InitiateConversationHook(On.MoreSlugcats.CLOracleBehavior.orig_InitateConversation orig, CLOracleBehavior self)
         {
@@ -226,6 +256,7 @@ namespace Pioneer
                     }
                 }
             }
+            else { orig(self); }
         }
 
         private bool CanIPickThisUpHook(On.Player.orig_CanIPickThisUp orig, Player self, PhysicalObject obj)
@@ -260,7 +291,7 @@ namespace Pioneer
         private void SessionEndedHook(On.SaveState.orig_SessionEnded orig, SaveState self, RainWorldGame game, bool survived, bool newMalnourished)
         {
             var save = game.GetMiscWorld();
-            if (save != null && self.food == 5 && game.GetStorySession.characterStats.name.value == "Pioneer")
+            if (save!= null && self.food >= 5 && game.GetStorySession.characterStats.name == Pioneer)
             {
                 game.GetStorySession.characterStats.foodToHibernate = 10;
                 save.IsNight = true;
@@ -378,7 +409,7 @@ namespace Pioneer
             else if (save != null && self?.room?.roomSettings.GetEffect(RoomSettings.RoomEffect.Type.LightBurn) != null)
             {
                 self.room.roomSettings.GetEffect(RoomSettings.RoomEffect.Type.LightBurn).amount = 1f;
-                self.effect_brightness = 0.3f;
+                self.effect_brightness = 0.1f;
             }
             if (save.IsNight == false && save.NightTutorial == false && self != null && self.hud != null && self.game.rainWorld != null)
             {
@@ -386,8 +417,6 @@ namespace Pioneer
                 save.NightTutorial = true;
             }
         }
-    
-    
 
         private void LizardBiteHook(On.Lizard.orig_Bite orig, Lizard self, BodyChunk chunk)
         {
@@ -570,7 +599,7 @@ namespace Pioneer
                     }
                 }
             }
-            if (self.GetCat().IsPioneer && self.FoodInStomach == 5 && save.FoodTutorial == false)
+            if (self.GetCat().IsPioneer && self.FoodInStomach == 10 && save.FoodTutorial == false)
             {
                 self?.room?.game?.cameras[0]?.hud?.textPrompt?.AddMessage(self?.room?.game?.rainWorld?.inGameTranslator?.Translate("If your belly is full, you will sleep until the next night."), 0, 200, true, true);
                 self?.room?.game?.cameras[0]?.hud?.textPrompt?.AddMessage(self?.room?.game?.rainWorld?.inGameTranslator?.Translate("However, you will wake up on an empty stomach."), 0, 200, true, true);

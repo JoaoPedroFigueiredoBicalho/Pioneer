@@ -44,6 +44,18 @@
         <Reference Include="DressMySlugcat">
           <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\workshop\content\312520\2948971756\plugins\DressMySlugcat.dll</HintPath>
         </Reference>
+        <Reference Include="Mono.Cecil.Mdb">
+          <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Rain World\RainWorld_Data\Managed\Mono.Cecil.Mdb.dll</HintPath>
+        </Reference>
+        <Reference Include="Mono.Cecil.Pdb">
+          <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Rain World\RainWorld_Data\Managed\Mono.Cecil.Pdb.dll</HintPath>
+        </Reference>
+        <Reference Include="MonoMod.Common">
+          <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Rain World\RainWorld_Data\Managed\MonoMod.Common.dll</HintPath>
+        </Reference>
+        <Reference Include="MonoMod.RuntimeDetour">
+          <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Rain World\RainWorld_Data\Managed\MonoMod.RuntimeDetour.dll</HintPath>
+        </Reference>
         <Reference Include="Unity.Mathematics">
           <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Rain World\RainWorld_Data\Managed\Unity.Mathematics.dll</HintPath>
         </Reference>

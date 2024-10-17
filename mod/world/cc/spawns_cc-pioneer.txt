@@ -1,0 +1,24 @@
+CC_A07 : 3-Caramel
+CC_A15 : 3-Centipede
+CC_B01 : 2-Cyan-2, 3-Centiwing, 3-Snail-{PreCycle}-3
+CC_B04 : 3-Centiwing, 4-Centipede, 3-Snail-{PreCycle}-2
+CC_B05 : 3-White, 4-TentaclePlant-{PreCycle}
+CC_B08 : 3-Strawberry, 3-Cyan-{PreCycle}-2
+CC_B11 : 3-BigSpider-2
+CC_B14 : 2-Cyan-2, 3-Centiwing
+CC_C04 : 3-Centiwing, 3-Centipede, 3-TentaclePlant-{PreCycle}
+CC_C07 : 2-White, 3-Centiwing, 2-Snail-{PreCycle}-3
+CC_C08 : 3-Yellow-3, 4-Yellow-2, 5-Centiwing
+CC_C11 : 4-Strawberry
+CC_F01 : 3-Centiwing, 4-White, 4-Snail-{PreCycle}-3
+CC_OUTPUT : 10-Small Centipede-3, 11-Snail-2
+CC_SHAFT01x : 4-BigSpider-2, 2-Eel-{PreCycle}
+CC_SHAFT02 : 5-BigSpider
+CC_STRAINER01 : 2-Small Centipede-3, 3-Centipede-3
+CC_STRAINER02 : 3-Mimic-{12}
+CC_SUMP01 : 5-BigSpider, 6-TentaclePlant
+CC_SUMP03 : 4-Mimic-{18}, 7-BigSpider, 8-Mimic-{14}, 12-Snail-2
+CC_SUMP04 : 3-Eel
+CC_SUMP05 : 2-Mimic-{19}, 3-Mimic-{21}, 5-Centipede-3, 11-Small Centipede-2, 11-Centipede-2
+OFFSCREEN : 0-Vulture-3, 0-Scavenger-6
+LINEAGE : CC_SUMP01 : 4 : BigSpider-0.1, White-0.2, TentaclePlant-0

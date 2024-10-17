@@ -1,0 +1,21 @@
+HI_A04 : 2-Red
+HI_A06 : 2-Strawberry
+HI_A10 : 3-Centiwing
+HI_A16 : 4-Centipede-3
+HI_A17 : 3-Lantern Mouse-4, 3-Cyan-{PreCycle}
+HI_A25 : 2-Centipede-3
+HI_B03 : 3-Centiwing-2
+HI_B05 : 3-Cyan-3, 3-Lantern Mouse-6
+HI_B06 : 4-Yellow-5
+HI_B07 : 2-Strawberry, 3-Centiwing, 3-TentaclePlant-{PreCycle}
+HI_B09 : 2-Centiwing, 3-White
+HI_B12 : 3-Centiwing-2
+HI_B13 : 2-Yellow-5
+HI_B15 : 2-Centipede, 3-Centipede-3
+HI_C01 : 4-Yellow-5
+HI_C02 : 5-Yellow-3
+HI_C04 : 5-Lantern Mouse-6, 7-TentaclePlant-{PreCycle}, 5-Cyan-{PreCycle}
+HI_C05 : 3-Yellow-3, 4-Yellow-3
+HI_C11 : 3-White, 4-Cyan
+HI_D01 : 2-Lantern Mouse-5, 2-Cyan-{PreCycle}-2
+OFFSCREEN : 0-Scavenger-14, 0-Vulture-4
