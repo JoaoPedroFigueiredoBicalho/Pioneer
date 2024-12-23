@@ -7,6 +7,7 @@
 		"the_pioneer/SpearPlus": 0.0,
 		"the_pioneer/PioneerGlows": true,
 		"the_pioneer/TimeToEscape": 80,
+		"the_pioneer/super_jump": 0.05,
 
 		"alignments": {
 			"Scavengers": {
@@ -17,9 +18,6 @@
 		"throw_skill": 2,
 		"the_glow": false,
 		"select_menu_scene": "Slugcat_Pioneer",
-		"weight": 1.2,
-		"tunnel_speed": 0.92,
-		"climb_speed": 0.86,
 		"diet": {
 			"base": "Gourmand"
 		},

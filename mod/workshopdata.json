@@ -1,0 +1,17 @@
+{
+  "Title": "The Pioneer",
+  "Description": "A mod that adds The Pioneer to the game.",
+  "ID": "arwyn.pioneer",
+  "Version": "0.5.6",
+  "TargetGameVersion": "v1.9.06",
+  "Requirements": "slime-cubed.slugbase,dressmyslugcat",
+  "RequirementNames": "SlugBase,Dress My Slugcat",
+  "Authors": "Arwyn",
+  "Visibility": "Unlisted",
+  "Tags": [
+    "Custom Slugcat"
+  ],
+  "WorkshopID": 3352312716,
+  "UploadFilesOnly": true,
+  "UploadThumbnail": false
+}
